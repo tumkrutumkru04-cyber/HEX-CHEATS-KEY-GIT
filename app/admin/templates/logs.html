@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Login Logs — HEX PROTOCOL{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Login Logs</h1>
+    <p class="page-subtitle">Every verification request handled by the API</p>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="toolbar">
+    <select class="input" id="statusFilter">
+      <option value="ALL">All statuses</option>
+      <option value="SUCCESS">Success</option>
+      <option value="INVALID_KEY">Invalid key</option>
+      <option value="EXPIRED">Expired</option>
+      <option value="DEVICE_MISMATCH">Device mismatch</option>
+      <option value="BANNED">Banned</option>
+      <option value="SERVER_ERROR">Server error</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>License Key</th>
+          <th>Installation ID</th>
+          <th>Source IP</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody id="logsBody">
+        <tr class="loading-row"><td colspan="5"><div class="spinner" style="margin:0 auto;"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <span class="pagination-info" id="paginationInfo"></span>
+    <div class="pagination-controls">
+      <button class="btn btn-ghost btn-sm" id="prevPageBtn">Prev</button>
+      <span class="text-secondary" id="pageIndicator" style="font-size:13px;"></span>
+      <button class="btn btn-ghost btn-sm" id="nextPageBtn">Next</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="/admin/static/js/logs.js"></script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — HEX PROTOCOL{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Dashboard</h1>
+    <p class="page-subtitle">Overview of your license key system</p>
+  </div>
+</div>
+
+<div class="stats-grid" id="statsGrid">
+  <div class="stat-card accent-mint">
+    <div class="stat-label">Total Keys</div>
+    <div class="stat-value skeleton" id="stat-total">00</div>
+  </div>
+  <div class="stat-card accent-blue">
+    <div class="stat-label">Active Keys</div>
+    <div class="stat-value skeleton" id="stat-active">00</div>
+  </div>
+  <div class="stat-card accent-amber">
+    <div class="stat-label">Expired Keys</div>
+    <div class="stat-value skeleton" id="stat-expired">00</div>
+  </div>
+  <div class="stat-card accent-red">
+    <div class="stat-label">Banned Keys</div>
+    <div class="stat-value skeleton" id="stat-banned">00</div>
+  </div>
+  <div class="stat-card accent-purple">
+    <div class="stat-label">Registered Devices</div>
+    <div class="stat-value skeleton" id="stat-devices">00</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <h2 class="panel-title">Recent API Requests</h2>
+    <a href="/admin/logs" class="btn btn-ghost btn-sm">View all logs</a>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>License Key</th>
+          <th>Installation ID</th>
+          <th>IP</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody id="recentRequestsBody">
+        <tr class="loading-row"><td colspan="5"><div class="spinner" style="margin:0 auto;"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="/admin/static/js/dashboard.js"></script>
+{% endblock %}

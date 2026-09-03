@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}HEX PROTOCOL{% endblock %}</title>
+<link rel="stylesheet" href="/admin/static/css/style.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">H</div>
+      <div class="brand-text">
+        <span class="brand-name">HEX PROTOCOL</span>
+        <span class="brand-sub">Key Administration</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="/admin/dashboard" class="nav-item {% if active_page == 'dashboard' %}active{% endif %}">
+        <span class="nav-icon">◈</span> Dashboard
+      </a>
+      <a href="/admin/keys" class="nav-item {% if active_page == 'keys' %}active{% endif %}">
+        <span class="nav-icon">🔑</span> License Keys
+      </a>
+      <a href="/admin/generate" class="nav-item {% if active_page == 'generate' %}active{% endif %}">
+        <span class="nav-icon">✦</span> Generate Keys
+      </a>
+      <a href="/admin/devices" class="nav-item {% if active_page == 'devices' %}active{% endif %}">
+        <span class="nav-icon">▣</span> Registered Devices
+      </a>
+      <a href="/admin/logs" class="nav-item {% if active_page == 'logs' %}active{% endif %}">
+        <span class="nav-icon">≡</span> Login Logs
+      </a>
+      <a href="/admin/settings" class="nav-item {% if active_page == 'settings' %}active{% endif %}">
+        <span class="nav-icon">⚙</span> Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-chip">
+        <div class="admin-avatar">{{ admin.username[0]|upper if admin else "?" }}</div>
+        <div class="admin-meta">
+          <span class="admin-username">{{ admin.username if admin else "" }}</span>
+          <a href="/admin/logout" class="admin-logout">Sign out</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="modal-backdrop" id="confirmModal">
+  <div class="modal">
+    <h3 id="confirmModalTitle">Are you sure?</h3>
+    <p id="confirmModalBody" class="modal-body-text"></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="confirmModalCancel">Cancel</button>
+      <button class="btn btn-danger" id="confirmModalConfirm">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script src="/admin/static/js/common.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

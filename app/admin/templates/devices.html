@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Registered Devices — HEX PROTOCOL{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Registered Devices</h1>
+    <p class="page-subtitle">Devices bound to license keys via Installation ID</p>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="toolbar">
+    <div class="search-input-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="input" id="searchInput" placeholder="Search by installation ID…">
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>License Key</th>
+          <th>Installation ID</th>
+          <th>App Version</th>
+          <th>Registered</th>
+          <th>Last Login</th>
+        </tr>
+      </thead>
+      <tbody id="devicesBody">
+        <tr class="loading-row"><td colspan="5"><div class="spinner" style="margin:0 auto;"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <span class="pagination-info" id="paginationInfo"></span>
+    <div class="pagination-controls">
+      <button class="btn btn-ghost btn-sm" id="prevPageBtn">Prev</button>
+      <span class="text-secondary" id="pageIndicator" style="font-size:13px;"></span>
+      <button class="btn btn-ghost btn-sm" id="nextPageBtn">Next</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="/admin/static/js/devices.js"></script>
+{% endblock %}

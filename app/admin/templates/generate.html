@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Generate Keys — HEX PROTOCOL{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Generate Keys</h1>
+    <p class="page-subtitle">Create one or more license keys with a chosen duration</p>
+  </div>
+</div>
+
+<div class="panel">
+  <form id="generateForm">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" class="input" id="quantity" value="1" min="1" max="500" required>
+      </div>
+      <div class="form-group">
+        <label>Key prefix</label>
+        <input type="text" class="input" id="prefix" value="HEX" maxlength="16" required>
+        <span class="form-hint">Format: PREFIX-XXXX-XXXX-XXXX</span>
+      </div>
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Note (optional)</label>
+        <input type="text" class="input" id="note" placeholder="e.g. Reseller batch, September promo…">
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top:18px;">
+      <label>Duration</label>
+      <div class="duration-grid" id="durationGrid">
+        <div class="duration-option" data-value="1_hour">1 Hour</div>
+        <div class="duration-option" data-value="custom_hours">Custom Hours</div>
+        <div class="duration-option" data-value="1_day">1 Day</div>
+        <div class="duration-option" data-value="custom_days">Custom Days</div>
+        <div class="duration-option" data-value="7_days">7 Days</div>
+        <div class="duration-option selected" data-value="30_days">30 Days</div>
+        <div class="duration-option" data-value="lifetime">Lifetime</div>
+      </div>
+    </div>
+
+    <div class="form-grid" id="customDurationRow" style="display:none; margin-top:6px;">
+      <div class="form-group" id="customHoursGroup" style="display:none;">
+        <label>Custom hours</label>
+        <input type="number" class="input" id="customHours" min="1" placeholder="e.g. 5">
+      </div>
+      <div class="form-group" id="customDaysGroup" style="display:none;">
+        <label>Custom days</label>
+        <input type="number" class="input" id="customDays" min="1" placeholder="e.g. 45">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-top:22px;" id="generateBtn">Generate Keys</button>
+  </form>
+</div>
+
+<div class="panel" id="resultPanel" style="display:none;">
+  <div class="panel-header">
+    <h2 class="panel-title">Generated Keys</h2>
+    <div class="row-actions">
+      <button class="btn btn-ghost btn-sm" id="copyAllBtn">Copy all</button>
+      <a href="/admin/keys" class="btn btn-secondary btn-sm">View in License Keys</a>
+    </div>
+  </div>
+  <div class="generated-keys-box" id="generatedKeysBox"></div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="/admin/static/js/generate.js"></script>
+{% endblock %}
